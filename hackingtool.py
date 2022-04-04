@@ -5,7 +5,7 @@ import sys
 import argparse
 import threading
 import webbrowser
-import request
+import requests
 import time
 import http.client
 import urllib.request
@@ -26,7 +26,7 @@ import getpass
 from os import path
 from platform import system
 from urllib.parse import urlparse
-from xlm.dom import minidom
+from xml.dom import minidom
 from optparse import OptionParser
 from time import sleep
 
@@ -90,3 +90,5 @@ def anonsurf():
         anonsurf()
     else:
         menu()
+
+menu()
