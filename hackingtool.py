@@ -57,13 +57,17 @@ Logo = """\033[33m
      ""'   
 \033[97m"""
 
+
 def menu():
-    print(Logo + """\033[0m
+    print(
+        Logo
+        + """\033[0m
     \033[91m[x] this tool must run as a root...[!] \033[97m
     [00]AnonSurf
     [99]Exit
-    """)
-    
+    """
+    )
+
     choice = input("choice =>>")
     if choice == "0" or choice == "00":
         clearScr()
@@ -76,11 +80,15 @@ def menu():
 
 
 def anonsurf():
-    os.system("echo  \"It automatically overwrites the RAM when\nthe system is shutting down AnD AlSo cHange Ip\" |boxes -d boy | lolcat")
-    anc=input("[1]install [2]Run [3]Stop [99]Main Menu >> ")
+    os.system(
+        'echo  "It automatically overwrites the RAM when\nthe system is shutting down AnD AlSo cHange Ip" |boxes -d boy | lolcat'
+    )
+    anc = input("[1]install [2]Run [3]Stop [99]Main Menu >> ")
     if anc == "1":
         os.system("sudo git clone https://github.com/Und3rf10w/kali-anonsurf.git")
-        os.system("cd kali-anonsurf && sudo ./install.sh && cd .. && sudo rm -r kali-anonsurf")
+        os.system(
+            "cd kali-anonsurf && sudo ./install.sh && cd .. && sudo rm -r kali-anonsurf"
+        )
         anonsurf()
     elif anc == "2":
         os.system("sudo anonsurf start")
@@ -90,5 +98,6 @@ def anonsurf():
         anonsurf()
     else:
         menu()
+
 
 menu()
