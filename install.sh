@@ -51,7 +51,7 @@ if [ $choice == 1 ]; then
             echo "";
             echo "[!] installaction requirement ..."
             sudo pip3 install lolcat
-            sudo apte-get install -y figlet
+            sudo apt-get install -y figlet
             sudo pip3 install boxes
             sudo apt-get install boxes
             sudo apt-get install flask
