@@ -14,43 +14,67 @@ NC='\e[0m'
 echo -e "${CYAN} "
 echo "AIOCLF GUN";
 echo -e "${BLUE} this tool mut run as root [!] ${NC}";
-echo -e "${WHITE} [>] Press enter to install hacking tool, ctrl-c to abort. ${NC}";
-read INPUT
+echo -e ${CYAN} "select option: "
 echo ""
+echo -e "${WHITE}    [1] kali linux / parrot-os"
+echo -e "${WHITE}    [0] exit"
+echo -n -e "choice ->> "
+read choice
 
-if ["$PREFIX" = "/data/data/com.termux/files/usr"]; then
-    INSTALL_DIR="$PREFIX/usr/share/AIOCLF"
-    BIN_DIR="$PREFIX/usr/bin"
-    pkg install -y git python3
-else
-    INSTALL_DIR="usr/share/doc/AIOCLF"
-    BIN_DIR="usr/bin"
-fi
-
-echo "[✔] Checking directories..."
-if [ -d "$INSTALL_DIR" ]; then
-    echo "[!] A directory AIOCLF already exists.. do you want to replace it ? [y/n]?";
-    read replacedir
-    if [ "$replacedir" = "y"]; then
-        rm -R "$INSTALL_DIR"
+INSTALL_DIR="usr/share/doc/AIOCLF"
+BIN_DIR="/usr/bin"
+if [ $choice == 1 ]; then 
+    echo "[-] checking internet connection ..."
+    wget -q --tries=10 --timeout=20 --spider http://google.com
+    if [[ $? -eq 0 ]]; then
+        echo -e ${BLUE} "[?] loading ..."
+        sudo apt-get update && sudo apt-get upgrade
+        sudo apt-get install python-pip
+        echo "[-] checking directories ..."
+        if [ -d "$INSTALL_DIR"]; then
+            echo "[!] directory was found, do you want to replace it ? [y/n] "
+            read input
+            if [ "$input" == "y"]; then
+                rm -R "$INSTALL_DIR"
+            else
+                exit
+            fi
+        fi
+            echo "[!] installing ..."
+            echo ""
+            git clone https://github.com/slowy07/AIOCLF.git "$INSTALL_DIR";
+            echo "#!/bin/bash 
+            python3 $INSTALL_DIR/hackingtool.py" '${1+"$@"}' > AIOCLF;
+            sudo chmod +x AIOCLF;
+            sudo cp AIOCLF /usr/bin/;
+            rm AIOCLF;
+            echo "";
+            echo "[!] installaction requirement ..."
+            sudo pip3 install lolcat
+            sudo apte-get install -y figlet
+            sudo pip3 install boxes
+            sudo apt-get install boxes
+            sudo apt-get install flask
+            sudo pip3 insstall requests
     else
-        exit
+        echo -e $RED "please check your internet connection"
     fi
+
+if [-d "$INSTALL_DIR" ]; then
+    echo "";
+    echo "[✔] Successfuly Installed !!! ";
+    echo "";
+    echo "now just type in terminal AIOCLF to run the tool";    
+else
+    echo "[x] installation failed ";
+    exit
 fi
 
-echo "[✔] Installing ...";
-echo "";
-git clone https://github.com/slowy07/AIOCLF
-echo "#!/bin/bash
-python3 $INSTALL_DIR/hackingtool.py" '${1+"$@"}' > AIOCLF;
-chmod +x AIOCLF;
-sudo cp AIOCLF /usr/bin;
-rm AIOCLF;
-
-if [ -d "$INSTALL_DIR" ]; then
-    echo "";
-    echo "[✔] Successfuly Installed !!! [✔]";
+elif [ $choice -eq 0 ];
+then
+    echo -e $RED "[:v] thank you"
+    exit
 else
-    echo "[x] installation failed";
+    echo -e $RED "[!] invalid choice"
     exit
 fi
