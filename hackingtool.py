@@ -1,37 +1,14 @@
 ##!usr/bin/env python3
 
 import os
-import sys
-import argparse
-import threading
 import webbrowser
-import requests
-import time
-import http.client
-import urllib.request
-import json
-import telnetlib
-import glob
-import getpass
-import socket
-import base64
-from getpass import getpass
-import subprocess
-from sys import argv
-import random
-import queue
-import subprocess
-import re
-import getpass
-from os import path
 from platform import system
-from urllib.parse import urlparse
-from xml.dom import minidom
-from optparse import OptionParser
 from time import sleep
 
+from core import HackingToolsCollection
+from tools.anonsurf import AnonSurfTools
 
-Logo = """\033[33m
+logo = """\033[33m
                               _ 
                             _-' "'-,     
                          _-' | d$$b |  
@@ -58,46 +35,67 @@ Logo = """\033[33m
 \033[97m"""
 
 
-def menu():
-    print(
-        Logo
-        + """\033[0m
-    \033[91m[x] this tool must run as a root...[!] \033[97m
-    [00]AnonSurf
-    [99]Exit
-    """
-    )
-
-    choice = input("choice =>>")
-    if choice == "0" or choice == "00":
-        clearScr()
-        anonsurf()
-    elif choice == "99":
-        clearScr(), sys.exit()
-        exit()
-    elif choice == "":
-        menu()
+all_tools = [
+    AnonSurfTools(),
+]
 
 
-def anonsurf():
-    os.system(
-        'echo  "It automatically overwrites the RAM when\nthe system is shutting down AnD AlSo cHange Ip" |boxes -d boy | lolcat'
-    )
-    anc = input("[1]install [2]Run [3]Stop [99]Main Menu >> ")
-    if anc == "1":
-        os.system("sudo git clone https://github.com/Und3rf10w/kali-anonsurf.git")
-        os.system(
-            "cd kali-anonsurf && sudo ./install.sh && cd .. && sudo rm -r kali-anonsurf"
-        )
-        anonsurf()
-    elif anc == "2":
-        os.system("sudo anonsurf start")
-    elif anc == "3":
-        os.system("sudo anonsurf stop")
-    elif anc == "99":
-        anonsurf()
-    else:
-        menu()
+class AllTools(HackingToolsCollection):
+    TITLE = "All tools"
+    TOOLS = all_tools
+
+    def show_info(self):
+        print(logo + "\033[0m \033[97m")
 
 
-menu()
+if __name__ == "__main__":
+    try:
+        if system() == "Linux":
+            fpath = "home/AIOCLFpath.txt"
+            if not os.path.exists(fpath):
+                os.system("clear")
+                print(
+                    """
+                    [@] set path (all your tools will be installed in that directory)
+                    [1] manual
+                    [2] default
+                """
+                )
+                choice = input("choice ->> ")
+
+                if choice == "1":
+                    inpath = input("enter path (with directory name ) >> ")
+                    with open(fpath, "w") as f:
+                        f.write(inpath)
+                    print(f"succesfully set path to {inpath}")
+                elif choice == "2":
+                    autopath = "/home/AIOCLF/"
+                    with open(fpath, "w") as f:
+                        f.write(autopath)
+                    print(f"your default path is {autopath}")
+                    sleep(3)
+                else:
+                    print("try again ..")
+                    exit(0)
+
+            with open(fpath) as f:
+                archive = f.readline()
+                if not os.path.exists(archive):
+                    os.mkdir(archive)
+                os.chdir(archive)
+                all_tools = AllTools()
+                all_tools.show_options()
+
+        elif system() == "Windows":
+            print(
+                "\033[91m please run this tool on a debian system for best result "
+                "\e[00m"
+            )
+            sleep(2)
+            webbrowser.open_new_tab("https://www.debian.org/")
+        else:
+            print("please check your system")
+
+    except KeyboardInterrupt:
+        print("\nExitting...")
+        sleep(2)

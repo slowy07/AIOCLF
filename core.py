@@ -9,11 +9,13 @@ from typing import Callable
 from typing import List
 from typing import Tuple
 
+
 def clear_screen():
     if system() == "Linux":
         os.system("clear")
     if system() == "windows":
         os.system("cls")
+
 
 def validate_input(ip, val_range):
     try:
@@ -25,43 +27,43 @@ def validate_input(ip, val_range):
     except:
         return None
 
+
 class HackingTool(object):
-    
+
     TITLE: str = ""
     DESCRIPTION: str = ""
 
     INSTALLATION_COMMANDS: List[str] = []
     INSTALLATION_DIR: str = ""
-    
+
     UNINSTALL_COMMANDS: List[str] = []
-    
+
     RUN_COMMANDS: List[str] = []
 
     OPTIONS: List[Tuple[str, Callable]] = []
     PROJECT_URL: str = ""
 
-
-    def __init__(self, options = None, installable: bool = True, runnable: bool = True):
+    def __init__(self, options=None, installable: bool = True, runnable: bool = True):
         if options is None:
             options = []
         if isinstance(options, list):
             self.OPTIONS = []
             if installable:
-                self.OPTIONS.append(("Install", self.install)
+                self.OPTIONS.append(("Install", self.install))
             if runnable:
-                self.OPTIONS.append("Run", self.run)
+                self.OPTIONS.append(("Run", self.run))
             self.OPTIONS.extend(options)
         else:
             raise Exception("options must be a lit of (option_name, option_fn) tuples")
-        
+
     def show_info(self):
         desc = self.DESCRIPTION
         if self.PROJECT_URL:
             desc += "\n\t[*]"
             desc += self.PROJECT_URL
         os.system(f'echo "{desc}"|boxes -d boy | lolcat')
-    
-    def show_options(self, parent = None):
+
+    def show_options(self, parent=None):
         clear_screen()
         self.show_info()
         for index, option in enumerate(self.OPTIONS):
@@ -88,7 +90,7 @@ class HackingTool(object):
         except Exception:
             print_exc()
             input("\n\nPress enter to continue")
-        return self.show_options(parent = parent)
+        return self.show_options(parent=parent)
 
     def before_install(self):
         pass
@@ -115,7 +117,7 @@ class HackingTool(object):
 
     def after_uninstall(self):
         pass
-    
+
     def before_run(self):
         pass
 
@@ -125,16 +127,17 @@ class HackingTool(object):
             for RUN_COMMAND in self.RUN_COMMANDS:
                 os.system(RUN_COMMAND)
             self.after_run()
-        
+
     def after_run(self):
         pass
-    
-    def is_installed(self, dir_to_check = None):
+
+    def is_installed(self, dir_to_check=None):
         print("Unimplemented: do not use")
         return "?"
 
     def show_project_page(self):
         webbrowser.open_new_tab(self.PROJECT_URL)
+
 
 class HackingToolsCollection(object):
     TITLE: str = ""
@@ -147,7 +150,7 @@ class HackingToolsCollection(object):
     def show_info(self):
         os.system("figlet -f standard -c {} | lolcat".format(self.TITLE))
 
-    def show_options(self, parent = None):
+    def show_options(self, parent=None):
         clear_screen()
         self.show_info()
         for index, tool in enumerate(self.TOOLS):
@@ -157,7 +160,7 @@ class HackingToolsCollection(object):
         try:
             tool_index = int(tool_index)
             if tool_index in range(len(self.TOOLS)):
-                ret_code = self.TOOLS[tool_index].show_options(parent = self)
+                ret_code = self.TOOLS[tool_index].show_options(parent=self)
                 if ret_code != 99:
                     input("\n\nPress enter to continue")
 
@@ -171,5 +174,5 @@ class HackingToolsCollection(object):
         except Exception as e:
             print_exc()
             input("\n\nPress enter to continue")
-        
-        return self.show_options(parent = parent)
+
+        return self.show_options(parent=parent)
