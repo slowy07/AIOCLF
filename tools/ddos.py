@@ -61,9 +61,42 @@ class Asyncorne(HackingTool):
         subprocess.run([
             "sudo", "./aSYNcrone", source_port, target_ip, target_port, 1000])
 
+class UFONet(HackingTool):
+    TITLE = "UFONet"
+    DESCRIPTION = "UFONet is a free software, p2p and cryptographic " \
+        "-distruptive \n toolkit-that allows to perform DoS and " \
+        "DDo attkcs\n\b " \
+        "for SECURITY TETING PURPOSE ONLY"
+    INSTALL_COMMANDS = [
+        "sudo git clone https://github.com/epsylon/ufonet.git"
+        "cd ufonet;python3 setup.py  install;sudo pip3 install GeoIP;sudo install pygeoip;sudo pip3 install requests;sudo pip3 install pycrypto;sudo pip3 install pycurl;sudo pip3 install whois;sudo pip3 install scapy-python3"
+    ]
+    RUN_COMMANDS = [
+        "sudo python3 ufonet --gui"
+    ]
+    PROJECT_URL = "https://github.com/epsylon/ufonet"
+
+class GoldenEye(HackingTool):
+    TITLE = "GoldenEye"
+    DESCRIPTION = "GoldenEye is an python3 app for SECURITY TESTING PURPOSES ONLY!\n" \
+                  "GoldenEye is a HTTP DoS Test Tool."
+    INSTALL_COMMANDS = [
+        "sudo git clone https://github.com/jseidl/GoldenEye.git;"
+        "chmod -R 755 GoldenEye"
+    ]
+    PROJECT_URL = "https://github.com/jseidl/GoldenEye"
+
+    def run(self):
+        os.system("cd GoldenEye; sudo ./goldeneye.py")
+        print("\033[96m Go to directory \n "
+            "[*] Usage: ./goldeneye.py <url> [OPTIONS]")
+
+
 class DDOSTools(HackingToolsCollection):
     TITLE = "DDOS Attack tools"
     TOOLS = [
         SlowLoris(),
         Asyncorne(),
+        UFONet(),
+        GoldenEye()
     ]
