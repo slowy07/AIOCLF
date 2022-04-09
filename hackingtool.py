@@ -1,4 +1,4 @@
-##!usr/bin/env python3
+# !usr/bin/env python3
 
 import os
 import webbrowser
@@ -11,29 +11,29 @@ from atools.ddos import DDOSTools
 
 
 logo = """\033[33m
-                              _ 
-                            _-' "'-,     
-                         _-' | d$$b |  
-                      _-'    | $$$$ |    
-                   _-'       | Y$$P |  
+                              _
+                            _-' "'-,
+                         _-' | d$$b |
+                      _-'    | $$$$ |
+                   _-'       | Y$$P |
                 _-'|         |      |
              _-'  _*         |      |
-          _-' |_-"      __--''\    /
+          _-' |_-"      __--''\\    /
        _-'         __--'     __*--'
      -'       __-''    __--*__-"`
-    |    _--''   __--*"__-'`  
-    |_--"  .--=`"__-||"  
+    |    _--''   __--*"__-'`
+    |_--"  .--=`"__-||"
     |      |  |\\   ||
     | .dUU |  | \\ //
     | UUUU | _|___//
-    | UUUU |  |   
-    | UUUU |  |   
+    | UUUU |  |
+    | UUUU |  |
     | UUUU |  |
     | UUUU |  |
     | UUUU |  |
     | UUP' |  |
     |   ___^-"`
-     ""'   
+     ""'
 \033[97m"""
 
 
@@ -92,8 +92,7 @@ if __name__ == "__main__":
         elif system() == "Windows":
             print(
                 "\033[91m please run this tool on a debian system for best result "
-                "\e[00m"
-            )
+                "\\e[00m")
             sleep(2)
             webbrowser.open_new_tab("https://www.debian.org/")
         else:
