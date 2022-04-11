@@ -7,7 +7,9 @@ from time import sleep
 
 from core import HackingToolsCollection
 from tools.anonsurf import AnonSurfTools
-from atools.ddos import DDOSTools
+from tools.ddos import DDOSTools
+from tools.exploit_frameworks import ExploitFrameworkTools
+from tools.forensic_tools import ForensicTools
 
 
 logo = """\033[33m
@@ -40,6 +42,8 @@ logo = """\033[33m
 all_tools = [
     AnonSurfTools(),
     DDOSTools(),
+    ForensicTools(),
+    ExploitFrameworkTools(),
 ]
 
 
