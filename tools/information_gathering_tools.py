@@ -38,6 +38,6 @@ class Dracnmap(HackingTool):
     PROJECT_URL = "https://github.com/Screetsec/Dracnmap"
 
 
-class InformationGatheringTools(HackingToolsCollections):
+class InformationGatheringTools(HackingToolsCollection):
     TITLE = "Information gathering tools"
     TOOLS = [NMAP(), Dracnmap()]

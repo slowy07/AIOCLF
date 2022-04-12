@@ -37,6 +37,7 @@ logo = """\033[33m
     | UUP' |  |
     |   ___^-"`
      ""'
+     AIOCLF
 \033[97m"""
 
 
@@ -64,7 +65,9 @@ if __name__ == "__main__":
             if not os.path.exists(fpath):
                 os.system("clear")
                 print(
-                    """
+                    f"""
+                    AIOCLF
+
                     [@] set path (all your tools will be installed in that directory)
                     [1] manual
                     [2] default
