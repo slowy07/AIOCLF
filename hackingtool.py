@@ -10,6 +10,7 @@ from tools.anonsurf import AnonSurfTools
 from tools.ddos import DDOSTools
 from tools.exploit_frameworks import ExploitFrameworkTools
 from tools.forensic_tools import ForensicTools
+from tools.information_gathering_tools import InformationGatheringTools
 
 
 logo = """\033[33m
@@ -41,6 +42,7 @@ logo = """\033[33m
 
 all_tools = [
     AnonSurfTools(),
+    InformationGatheringTools(),
     DDOSTools(),
     ForensicTools(),
     ExploitFrameworkTools(),
@@ -96,7 +98,8 @@ if __name__ == "__main__":
         elif system() == "Windows":
             print(
                 "\033[91m please run this tool on a debian system for best result "
-                "\\e[00m")
+                "\\e[00m"
+            )
             sleep(2)
             webbrowser.open_new_tab("https://www.debian.org/")
         else:

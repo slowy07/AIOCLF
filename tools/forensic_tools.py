@@ -13,15 +13,19 @@ class Autopsy(HackingTool):
     def __init__(self):
         super(Autopsy, self).__init__(installable=False)
 
+
 class Wireshark(HackingTool):
     TITLE = "Wireshark"
-    DESCRIPTION = "Wireshark is a network capture and analyzer \n" \
-                  "tool to see what’s happening in your network.\n " \
-                  "And also investigate Network related incident"
+    DESCRIPTION = (
+        "Wireshark is a network capture and analyzer \n"
+        "tool to see what’s happening in your network.\n "
+        "And also investigate Network related incident"
+    )
     RUN_COMMANDS = ["sudo wireshark"]
 
     def __init__(self):
-        super(Wireshark, self).__init__(installable = False)
+        super(Wireshark, self).__init__(installable=False)
+
 
 class BulkExtractor(HackingTool):
     TITLE = "Bulk extractor"
@@ -29,20 +33,25 @@ class BulkExtractor(HackingTool):
     PROJECT_URL = "https://github.com/simsong/bulk_extractor"
 
     def __init__(self):
-        super(BulkExtractor, self).__init__([
-            ("GUI Mode (Downlod required)", self.gui_mode),
-            ("CLI Mode", self.cli_mode)
-        ], installable = False, runnable = False)
+        super(BulkExtractor, self).__init__(
+            [
+                ("GUI Mode (Downlod required)", self.gui_mode),
+                ("CLI Mode", self.cli_mode),
+            ],
+            installable=False,
+            runnable=False,
+        )
 
     def gui_mode(self):
-        os.system(
-            "sudo git clone https://github.com/simsong/bulk_extractor.git")
+        os.system("sudo git clone https://github.com/simsong/bulk_extractor.git")
         os.system("ls src/ && cd .. && cd java_gui && ./BEViewer")
         print(
-            "If you getting error after clone go to /java_gui/src/ And Compile .Jar file && run ./BEViewer")
+            "If you getting error after clone go to /java_gui/src/ And Compile .Jar file && run ./BEViewer"
+        )
         print(
-            "Please Visit For More Details About Installation >> https://github.com/simsong/bulk_extractor")
-    
+            "Please Visit For More Details About Installation >> https://github.com/simsong/bulk_extractor"
+        )
+
     def cli_mode(self):
         os.system("sudo apt-get install bulk_extractor")
         print("bulk extractor and options")
@@ -51,6 +60,7 @@ class BulkExtractor(HackingTool):
             'echo "bulk_extractor [options] imagefile | boxes -d headline | lolcat'
         )
 
+
 class Guymager(HackingTool):
     TITLE = "Disk clone and iso image aquire"
     DESCRIPTION = "Gumager is a free forensic imager for media acquisition"
@@ -58,27 +68,25 @@ class Guymager(HackingTool):
     RUN_COMMANDS = ["sudo gumager"]
     PROJECT_URL = "https://guymager.sourceforge.io/"
 
+
 class Toolsley(HackingTool):
     TITLE = "Toolsley"
-    DESCRIPTION = "toolsley got more than ten useful tool for investigation.\n" \
-                    "[+]File signature verifier\n"\
-                    "[+]File identifier.\n"\
-                    "[+]Hash & validate.\n"\
-                    "[+]Binary inspector.\n"\
-                    "[+]Encode text.\n"\
-                    "[+]Data URI generator.\n"\
-                    "[+]Password generator"
+    DESCRIPTION = (
+        "toolsley got more than ten useful tool for investigation.\n"
+        "[+]File signature verifier\n"
+        "[+]File identifier.\n"
+        "[+]Hash & validate.\n"
+        "[+]Binary inspector.\n"
+        "[+]Encode text.\n"
+        "[+]Data URI generator.\n"
+        "[+]Password generator"
+    )
     PROJECT_URL = "https://www.toolsley.com/"
-    
+
     def __init__(self):
-        super(Toolsley, self).__init__(installable = False, runnable = False)
+        super(Toolsley, self).__init__(installable=False, runnable=False)
+
 
 class ForensicTools(HackingToolsCollection):
     TITLE = "Forensic tools"
-    TOOLS = [
-        Autopsy(),
-        Wireshark(),
-        BulkExtractor(),
-        Guymager(),
-        Toolsley()
-    ]
+    TOOLS = [Autopsy(), Wireshark(), BulkExtractor(), Guymager(), Toolsley()]

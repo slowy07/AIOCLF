@@ -43,11 +43,7 @@ class HackingTool(object):
     OPTIONS: List[Tuple[str, Callable]] = []
     PROJECT_URL: str = ""
 
-    def __init__(
-            self,
-            options=None,
-            installable: bool = True,
-            runnable: bool = True):
+    def __init__(self, options=None, installable: bool = True, runnable: bool = True):
         if options is None:
             options = []
         if isinstance(options, list):
@@ -58,8 +54,7 @@ class HackingTool(object):
                 self.OPTIONS.append(("Run", self.run))
             self.OPTIONS.extend(options)
         else:
-            raise Exception(
-                "options must be a lit of (option_name, option_fn) tuples")
+            raise Exception("options must be a lit of (option_name, option_fn) tuples")
 
     def show_info(self):
         desc = self.DESCRIPTION
