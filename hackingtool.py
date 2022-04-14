@@ -11,6 +11,7 @@ from tools.ddos import DDOSTools
 from tools.exploit_frameworks import ExploitFrameworkTools
 from tools.forensic_tools import ForensicTools
 from tools.information_gathering_tools import InformationGatheringTools
+from tools.other_tools import OtherTools
 
 
 logo = """\033[33m
@@ -47,6 +48,7 @@ all_tools = [
     DDOSTools(),
     ForensicTools(),
     ExploitFrameworkTools(),
+    OtherTools(),
 ]
 
 
