@@ -105,12 +105,48 @@ class Venom(HackingTool):
     PROJECT_URL = "https://github.com/r00t-3xp10it/venom"
 
 
+class Spycom(HackingTool):
+    TITLE = "Spycam"
+    DESCRIPTION = (
+        "Script to generate a Win32 payload that takes the webcam "
+        "image every 1 minute and send it to the attacker"
+    )
+    INSTALL_COMMANDS = [
+        "sudo git clone https://github.com/indexnotfound404/spycam.git",
+        "cd spycam && bash install.sh && chmod +x spycam",
+    ]
+    RUN_COMMANDS = ["cd spycam && ./spycam"]
+    PROJECT_URL = "https://github.com/indexnotfound404/spycam"
+
+
+class MobDroid(HackingTool):
+    TITLE = "Mob-Droid"
+    DESCRIPTION = (
+        "Mob-Droid helps you to generate metasploit payloads in "
+        "easy way\n without typing long commands and save your time"
+    )
+    INSTALL_COMMANDS = ["git clone https://github.com/kinghacker0/mob-droid.git"]
+    RUN_COMMANDS = ["cd mob-droid;sudo python mob-droid.py"]
+    PROJECT_URL = "https://github.com/kinghacker0/Mob-Droid"
+
+
+class Enigma(HackingTool):
+    TITLE = "Enigma"
+    DESCRIPTION = "Enigma is a Multiplatform payload dropper"
+    INSTALL_COMMANDS = ["sudo git clone https://github.com/UndeadSec/Enigma.git"]
+    RUN_COMMANDS = ["cd Enigma;sudo python enigma.py"]
+    PROJECT_URL = "https://github.com/UndeadSec/Enigma"
+
+
 class PayloadCreatorTools(HackingToolsCollection):
-    TITLE = "Payload Creator Tools"
+    TITLE = "Payload creation tools"
     TOOLS = [
         TheFatRat(),
         Brutal(),
         Stitch(),
         MSFVenom(),
         Venom(),
+        Spycam(),
+        MobDroid(),
+        Enigma(),
     ]

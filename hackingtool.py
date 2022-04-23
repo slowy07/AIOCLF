@@ -13,6 +13,7 @@ from tools.forensic_tools import ForensicTools
 from tools.information_gathering_tools import InformationGatheringTools
 from tools.other_tools import OtherTools
 from tools.payload_generator import PayloadCreatorTools
+from tools.phising_attack import PhisingAttackTools
 
 
 logo = """\033[33m
@@ -49,6 +50,7 @@ all_tools = [
     DDOSTools(),
     ForensicTools(),
     PayloadCreatorTools(),
+    PhisingAttackTools(),
     ExploitFrameworkTools(),
     OtherTools(),
 ]
